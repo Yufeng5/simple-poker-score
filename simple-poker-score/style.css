@@ -1,0 +1,663 @@
+/* 全局样式重置 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #f5f5f5;
+    color: #333;
+    line-height: 1.6;
+}
+
+#app {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+/* 页面通用样式 */
+.page {
+    background-color: white;
+    border-radius: 12px;
+    padding: 30px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    min-height: 80vh;
+}
+
+.hidden {
+    display: none;
+}
+
+/* 标题样式 */
+h1 {
+    text-align: center;
+    color: #2c3e50;
+    margin-bottom: 40px;
+    font-size: 28px;
+}
+
+h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+h3 {
+    color: #34495e;
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+/* 按钮样式 */
+button {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: 500;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+.primary-btn {
+    background-color: #3498db;
+    color: white;
+}
+
+.primary-btn:hover {
+    background-color: #2980b9;
+}
+
+.secondary-btn {
+    background-color: #95a5a6;
+    color: white;
+}
+
+.secondary-btn:hover {
+    background-color: #7f8c8d;
+}
+
+.tertiary-btn {
+    background-color: #e74c3c;
+    color: white;
+}
+
+.tertiary-btn:hover {
+    background-color: #c0392b;
+}
+
+/* 表单样式 */
+.form {
+    margin-top: 30px;
+    padding: 25px;
+    border: 1px solid #e0e0e0;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+}
+
+input {
+    width: 100%;
+    padding: 12px 16px;
+    margin-bottom: 20px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form-buttons {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.form-buttons button {
+    flex: 1;
+}
+
+/* 首页样式 */
+.home-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.home-buttons button {
+    padding: 15px;
+    font-size: 18px;
+}
+
+/* 房间页样式 */
+.room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.room-info h2 {
+    margin-bottom: 5px;
+}
+
+#current-room-code {
+    font-weight: bold;
+    color: #3498db;
+}
+
+#online-players {
+    color: #7f8c8d;
+    font-size: 14px;
+}
+
+.room-actions {
+    display: flex;
+    gap: 10px;
+}
+
+/* 玩家列表样式 */
+.players-section {
+    margin-bottom: 40px;
+}
+
+.players-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 20px;
+}
+
+.player-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    padding: 15px;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    border: 2px solid transparent;
+}
+
+.player-item:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border-color: #3498db;
+}
+
+.player-item.self {
+    border-color: #27ae60;
+    background-color: rgba(39, 174, 96, 0.1);
+}
+
+.player-item.self:hover {
+    border-color: #27ae60;
+}
+
+.player-avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #3498db;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.player-name {
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    margin-bottom: 5px;
+    color: #2c3e50;
+}
+
+.player-balance {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.balance-positive {
+    color: #27ae60;
+}
+
+.balance-negative {
+    color: #e74c3c;
+}
+
+.balance-zero {
+    color: #95a5a6;
+}
+
+/* 转账记录样式 */
+.transactions-section {
+    margin-bottom: 30px;
+}
+
+.transactions-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 2px solid #f0f0f0;
+    border-radius: 12px;
+    padding: 15px;
+    background-color: #f9f9f9;
+}
+
+.transaction-item {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background-color: white;
+    border-left: 4px solid #3498db;
+}
+
+.transaction-item:last-child {
+    margin-bottom: 0;
+}
+
+.transaction-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.transaction-sender {
+    font-weight: 500;
+    color: #e74c3c;
+}
+
+.transaction-receiver {
+    font-weight: 500;
+    color: #27ae60;
+}
+
+.transaction-amount {
+    font-weight: bold;
+    font-size: 16px;
+    color: #2c3e50;
+}
+
+.transaction-time {
+    font-size: 12px;
+    color: #95a5a6;
+}
+
+.transaction-bomb {
+    font-size: 12px;
+    color: #e67e22;
+    font-weight: 500;
+    margin-left: 10px;
+}
+
+/* 转账弹窗样式 */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: white;
+    border-radius: 16px;
+    padding: 30px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: #2c3e50;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #95a5a6;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+    background-color: #f0f0f0;
+    color: #7f8c8d;
+    transform: none;
+    box-shadow: none;
+}
+
+.modal-body {
+    margin-bottom: 30px;
+}
+
+/* 分数卡片网格 */
+.score-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.score-card {
+    background-color: #f9f9f9;
+    border: 2px solid #e0e0e0;
+    border-radius: 12px;
+    padding: 20px;
+    text-align: center;
+    font-size: 20px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.score-card:hover {
+    border-color: #3498db;
+    background-color: #f0f8ff;
+    transform: translateY(-2px);
+}
+
+.score-card.selected {
+    border-color: #3498db;
+    background-color: #3498db;
+    color: white;
+}
+
+/* 炸弹选项 */
+.bomb-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.bomb-option input[type="checkbox"] {
+    width: auto;
+    margin: 0;
+    transform: scale(1.2);
+}
+
+.bomb-option label {
+    font-size: 16px;
+    color: #34495e;
+    cursor: pointer;
+}
+
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#confirm-transfer-btn:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* 历史记录页样式 */
+.history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.history-rooms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.history-room-item {
+    padding: 20px;
+    border-radius: 12px;
+    background-color: #f9f9f9;
+    border: 2px solid #e0e0e0;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.history-room-item:hover {
+    border-color: #3498db;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transform: translateY(-2px);
+}
+
+.history-room-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.history-room-code {
+    font-weight: bold;
+    color: #3498db;
+    font-size: 18px;
+}
+
+.history-room-time {
+    color: #95a5a6;
+    font-size: 14px;
+}
+
+.history-room-players {
+    color: #7f8c8d;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.history-room-scores {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.history-player-score {
+    font-size: 14px;
+}
+
+.history-player-score .name {
+    font-weight: 500;
+}
+
+.history-player-score .score {
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+/* 历史详情页样式 */
+.history-detail {
+    margin-top: 30px;
+}
+
+.room-summary {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    border: 2px solid #e0e0e0;
+}
+
+.room-summary h2 {
+    margin-bottom: 10px;
+}
+
+#history-room-code {
+    font-weight: bold;
+    color: #3498db;
+}
+
+#history-room-time,
+#history-room-players {
+    color: #7f8c8d;
+    margin-bottom: 5px;
+}
+
+.final-scores {
+    margin-bottom: 30px;
+}
+
+#final-scores-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 12px;
+}
+
+.final-score-item {
+    padding: 10px 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.final-score-item .name {
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.final-score-item .score {
+    font-weight: bold;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    #app {
+        padding: 10px;
+    }
+    
+    .page {
+        padding: 20px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    h2 {
+        font-size: 20px;
+    }
+    
+    .room-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+    }
+    
+    .room-actions {
+        align-self: flex-end;
+    }
+    
+    .players-list {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 15px;
+    }
+    
+    .player-item {
+        padding: 10px;
+    }
+    
+    .player-avatar {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+    }
+    
+    .player-name {
+        font-size: 12px;
+    }
+    
+    .player-balance {
+        font-size: 14px;
+    }
+    
+    .score-grid {
+        gap: 10px;
+    }
+    
+    .score-card {
+        padding: 15px;
+        font-size: 18px;
+    }
+    
+    .form-buttons {
+        flex-direction: column;
+    }
+    
+    .home-buttons {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .players-list {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .score-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .room-actions {
+        flex-direction: column;
+        width: 100%;
+    }
+    
+    .room-actions button {
+        width: 100%;
+    }
+}

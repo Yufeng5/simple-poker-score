@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>扑克记账本</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 首页 -->
+        <div id="home-page" class="page">
+            <h1>扑克记账本</h1>
+            
+            <div class="home-buttons">
+                <button id="create-room-btn" class="primary-btn">创建房间</button>
+                <button id="join-room-btn" class="secondary-btn">加入房间</button>
+                <button id="history-btn" class="tertiary-btn">历史记录</button>
+            </div>
+            
+            <!-- 加入房间表单 -->
+            <div id="join-form" class="form hidden">
+                <h2>加入房间</h2>
+                <input type="text" id="room-code" placeholder="输入房间号">
+                <input type="text" id="player-name" placeholder="输入你的昵称">
+                <div class="form-buttons">
+                    <button id="submit-join-btn" class="primary-btn">加入</button>
+                    <button id="cancel-join-btn" class="secondary-btn">取消</button>
+                </div>
+            </div>
+            
+            <!-- 创建房间表单 -->
+            <div id="create-form" class="form hidden">
+                <h2>创建房间</h2>
+                <input type="text" id="create-player-name" placeholder="输入你的昵称">
+                <div class="form-buttons">
+                    <button id="submit-create-btn" class="primary-btn">创建</button>
+                    <button id="cancel-create-btn" class="secondary-btn">取消</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 房间页 -->
+        <div id="room-page" class="page hidden">
+            <!-- 顶部：房间信息 -->
+            <div class="room-header">
+                <div class="room-info">
+                    <h2>房间 <span id="current-room-code"></span></h2>
+                    <p id="online-players">在线玩家：0</p>
+                </div>
+                <div class="room-actions">
+                    <button id="settle-room-btn" class="secondary-btn">房间结算</button>
+                    <button id="leave-room-btn" class="tertiary-btn">离开房间</button>
+                </div>
+            </div>
+            
+            <!-- 中部：玩家列表 -->
+            <div class="players-section">
+                <h3>玩家列表</h3>
+                <div id="players-list" class="players-list"></div>
+            </div>
+            
+            <!-- 下部：转账记录 -->
+            <div class="transactions-section">
+                <h3>转账记录</h3>
+                <div id="transactions-list" class="transactions-list"></div>
+            </div>
+        </div>
+        
+        <!-- 转账弹窗 -->
+        <div id="transfer-modal" class="modal hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="transfer-title">A 转给 B</h3>
+                    <button id="close-modal-btn" class="close-btn">×</button>
+                </div>
+                <div class="modal-body">
+                    <!-- 分数卡片网格 -->
+                    <div class="score-grid">
+                        <div class="score-card" data-cards="1">1张 (0.5分)</div>
+                        <div class="score-card" data-cards="2">2张 (1分)</div>
+                        <div class="score-card" data-cards="3">3张 (1.5分)</div>
+                        <div class="score-card" data-cards="4">4张 (2分)</div>
+                        <div class="score-card" data-cards="5">5张 (2.5分)</div>
+                        <div class="score-card" data-cards="6">6张 (3分)</div>
+                        <div class="score-card" data-cards="7">7张 (3.5分)</div>
+                        <div class="score-card" data-cards="8">8张 (4分)</div>
+                        <div class="score-card" data-cards="9">9张 (4.5分)</div>
+                        <div class="score-card" data-cards="10">10张 (10分)</div>
+                        <div class="score-card" data-cards="11">11张 (11分)</div>
+                        <div class="score-card" data-cards="12">12张 (12分)</div>
+                        <div class="score-card" data-cards="13">13张 (15分)</div>
+                    </div>
+                    <!-- 炸弹选项 -->
+                    <div class="bomb-option">
+                        <input type="checkbox" id="bomb-checkbox">
+                        <label for="bomb-checkbox">炸弹（积分翻倍）</label>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button id="confirm-transfer-btn" class="primary-btn" disabled>确认转账</button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 历史记录页 -->
+        <div id="history-page" class="page hidden">
+            <div class="history-header">
+                <h1>历史记录</h1>
+                <button id="back-to-home-btn" class="secondary-btn">返回首页</button>
+            </div>
+            <div id="history-rooms-list" class="history-rooms-list"></div>
+        </div>
+        
+        <!-- 历史详情页 -->
+        <div id="history-detail-page" class="page hidden">
+            <div class="history-header">
+                <h1>历史详情</h1>
+                <button id="back-to-history-btn" class="secondary-btn">返回历史</button>
+            </div>
+            <div class="history-detail">
+                <div class="room-summary">
+                    <h2>房间 <span id="history-room-code"></span></h2>
+                    <p id="history-room-time"></p>
+                    <p id="history-room-players"></p>
+                </div>
+                <div class="final-scores">
+                    <h3>最终得分</h3>
+                    <div id="final-scores-list"></div>
+                </div>
+                <div class="transactions-section">
+                    <h3>转账记录</h3>
+                    <div id="history-transactions-list" class="transactions-list"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
